@@ -38,7 +38,7 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/2022/04/16/network-fundamentals/</loc>
+    <loc>https://faceless00.github.io/2022/04/28/yourSql-2/</loc>
     
     <lastmod>2023-01-10</lastmod>
     
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/2022/04/28/yourSql-2/</loc>
+    <loc>https://faceless00.github.io/2022/04/16/network-fundamentals/</loc>
     
     <lastmod>2023-01-10</lastmod>
     
@@ -138,13 +138,6 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/tags/draft/</loc>
-    <lastmod>2023-01-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://faceless00.github.io/tags/anonymity/</loc>
     <lastmod>2023-01-15</lastmod>
     <changefreq>weekly</changefreq>
@@ -153,6 +146,13 @@
   
   <url>
     <loc>https://faceless00.github.io/tags/essay/</loc>
+    <lastmod>2023-01-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://faceless00.github.io/tags/draft/</loc>
     <lastmod>2023-01-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
