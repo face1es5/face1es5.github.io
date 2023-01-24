@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/2022/06/06/CSAPP/</loc>
+    <loc>https://faceless00.github.io/2022/04/06/ALL-About-EOF/</loc>
     
     <lastmod>2023-01-10</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/2022/04/06/ALL-About-EOF/</loc>
+    <loc>https://faceless00.github.io/2022/06/06/CSAPP/</loc>
     
     <lastmod>2023-01-10</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/2022/04/28/yourSql-2/</loc>
+    <loc>https://faceless00.github.io/2022/04/16/network-fundamentals/</loc>
     
     <lastmod>2023-01-10</lastmod>
     
@@ -56,7 +56,7 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/2022/04/16/network-fundamentals/</loc>
+    <loc>https://faceless00.github.io/2022/04/08/The-Hitchhiker-s-Guide-to-Online-Anonymity/</loc>
     
     <lastmod>2023-01-10</lastmod>
     
@@ -74,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/2022/04/08/The-Hitchhiker-s-Guide-to-Online-Anonymity/</loc>
+    <loc>https://faceless00.github.io/2022/04/28/yourSql-2/</loc>
     
     <lastmod>2023-01-10</lastmod>
     
@@ -119,7 +119,7 @@
 
   
   <url>
-    <loc>https://faceless00.github.io/tags/original/</loc>
+    <loc>https://faceless00.github.io/tags/translation/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -133,6 +133,13 @@
   </url>
   
   <url>
+    <loc>https://faceless00.github.io/tags/original/</loc>
+    <lastmod>2023-01-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://faceless00.github.io/tags/fuck/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -140,14 +147,14 @@
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/tags/translation/</loc>
+    <loc>https://faceless00.github.io/tags/draft/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/tags/draft/</loc>
+    <loc>https://faceless00.github.io/tags/anonymity/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -174,24 +181,17 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://faceless00.github.io/tags/anonymity/</loc>
-    <lastmod>2023-01-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
-    <loc>https://faceless00.github.io/categories/original/</loc>
+    <loc>https://faceless00.github.io/categories/translation/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://faceless00.github.io/categories/translation/</loc>
+    <loc>https://faceless00.github.io/categories/original/</loc>
     <lastmod>2023-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

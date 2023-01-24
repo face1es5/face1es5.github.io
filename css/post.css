@@ -3,11 +3,14 @@
   --navigator-background-color: #241d1d;
 }
 #post {
-  font-family: var(--post-font-family);
+  font-family: "Monaco", "Monospace", "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
   color: var(--main-color);
 }
 #postBody img {
   margin: 5px;
+}
+#post code {
+  font-family: "Monaco", "Monospace", "SF Pro Text", "Myriad Set Pro", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", "sans-serif";
 }
 aside {
   box-sizing: border-box;
