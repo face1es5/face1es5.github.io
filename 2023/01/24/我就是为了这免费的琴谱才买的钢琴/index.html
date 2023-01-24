@@ -60,8 +60,8 @@
     </div>
     <div id="postBody">
       <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>musescore也不免费了，我懒得打开控制台一个一个保存svg，所以选择直接开爬</p>
-<p>但是musescore非常卑鄙，不仅用js渲染界面导致我不能直接用requests直接爬</p>
-<p>决定使用selenium，还有一个问题，琴谱加载是lazyloding，这意味着单纯用selenium加载完js也不能爬到所有谱子</p>
+<p>但是musescore非常卑鄙，用js渲染界面导致我不能直接用requests直接爬</p>
+<p>决定使用selenium，但是还有一个问题，琴谱加载是lazyloding，这意味着单纯用selenium加载完js也不能爬到所有图片</p>
 <p>不过我发现有个全屏模式：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-01-24/image-20230124164934361.png" alt="image-20230124164934361"></p>
 <p>按了之后会进入全屏，但是并没有什么b用，就算进入全屏也还是懒加载，这个b musescore的开发者可能有点心理变态，我没有深入研究他的加载算法，但大概是图片在浏览器视图内就会加载。</p>
