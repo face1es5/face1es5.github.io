@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang=" ">
+<head>
+  <meta charset="utf-8" />
+<link rel="icon" href="/images/rev_sheep.png " />
+<title>almostSalted</title>
+<meta name="referrer" content="no-referrer" />
+<meta name="google-site-verification" content="_CsSd0yrTQQrdEyoybq1kZNTZbIVulPo3zdQnaqAR0Y" />
+<link rel="stylesheet" href="/css/highlight/styles/monokai.min.css" />
+  
+<link rel="stylesheet" href="/css/layout.css">
+
+<meta name="generator" content="Hexo 6.1.0"></head>
+<body>
+  
+<link rel="stylesheet" href="/css/header.css">
+
+
+<div class="topBar">
+  <img class="icon" src="/images/rev_sheep.png " />
+  <div class="menu">
+     
+    <a href="/ ">home</a>
+     
+    <a href="/archives ">archives</a>
+     
+    <a href="/categories ">categories</a>
+     
+    <a href="/aboutme ">aboutme</a>
+     
+    <a href="/diary ">diary</a>
+    
+  </div>
+</div>
+<div class="blank"></div>
+  <div class="wrapper">
+    
+<link rel="stylesheet" href="/css/post.css">
+
+
+<script src="/js/post.js"></script>
+
+
+<div id="post">
+  <aside id="navigator">
+    <ol class="anchor"><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#%E8%BF%87%E7%A8%8B"><span class="anchor-number">1.</span> <span class="anchor-text">过程</span></a></li><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#%E7%BB%93%E6%9E%9C"><span class="anchor-number">2.</span> <span class="anchor-text">结果</span></a></li><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#%E4%BB%A3%E7%A0%81"><span class="anchor-number">3.</span> <span class="anchor-text">代码</span></a></li></ol>
+  </aside>
+  <div id="content">
+    <div id="postHead">
+      <h1>我就是为了这免费的琴谱才买的钢琴</h1>
+      <div class="postDate">
+        <img class="dateIcon" src="/images/clockicon.svg" />
+        --2023.1.24
+      </div>
+        
+        <div class="postCategory">
+            <a href="/categories/%E5%9E%83%E5%9C%BE/">垃圾</a>
+        </div>
+         
+    </div>
+    <div id="postBody">
+      <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>musescore也不免费了，我懒得打开控制台一个一个保存svg，所以选择直接开爬</p>
+<p>但是musescore非常卑鄙，不仅用js渲染界面导致我不能直接用requests直接爬</p>
+<p>决定使用selenium，还有一个问题，琴谱加载是lazyloding，这意味着单纯用selenium加载完js也不能爬到所有谱子</p>
+<p>不过我发现有个全屏模式：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-01-24/image-20230124164934361.png" alt="image-20230124164934361"></p>
+<p>按了之后会进入全屏，但是并没有什么b用，就算进入全屏也还是懒加载，这个b musescore的开发者可能有点心理变态，我没有深入研究他的加载算法，但大概是图片在浏览器视图内就会加载。</p>
+<blockquote>
+<p>提示一下，这里用 <code>window.scrollBy(window.screen.width,0)</code>没什么b用哈，可能是这个b网站把这个函数屏蔽了吧，非常卑鄙是不是☻</p>
+</blockquote>
+<p>那么大题思路就是用selnium加载js，然后获取全屏按钮并点击，再然后移动到一个<strong>合适</strong>的位置从而加载所有图片，最后获取图片的链接并且下载</p>
+<blockquote>
+<p>这个合适的位置呢，并不是说越往右越好，比如你直接移动到最右边，你会发现左边几张不在页面上的图片又不见了，是的，就是这么卑鄙，加载完的图片还可以消失☻</p>
+</blockquote>
+<p>根据我的个人经验，大概全屏后右移个三四次就可以加载所有图片，这里右移是通过发送方向键的➡️键来实现的，没办法这个b网站把<code>scrollBy</code>函数屏蔽了，只能<img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-01-24/image-20230124165846621.png" alt="image-20230124165846621"></p>
+<p>不过下载完的是svg格式的，而且还是一张张的，让我很不爽，所以决定再完善一下把svg合并成一张pdf</p>
+<p>首先是svg转为pdf，使用了svg2pdf这个库，很好用</p>
+<p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-01-24/image-20230124170805520.png" alt="image-20230124170805520">只需要一条语句就能把svg转换成pdf</p>
+<p>然后合并pdf使用了PyPDF2库，也很方便好用☻</p>
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>命令行格式:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-01-24/image-20230124171342635.png" alt="image-20230124171342635"></p>
+<p>示例:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-01-24/image-20230124171833097.png" alt="image-20230124171833097"></p>
+<p>乐谱（我就不放上来了）:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-01-24/image-20230124171907341.png" alt="image-20230124171907341"></p>
+<p>打印也很方便哦，感觉学钢琴更有动力了呢☻☻☻☻(怎么可能☻)</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><pre><code class="python">#!/usr/local/bin/python3.11
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+import requests
+import sys
+import os
+from PyPDF2 import PdfWriter
+from cairosvg import svg2pdf
+
+
+
+if len(sys.argv) != 4:
+    print(&#39;&#39;&#39;命令行格式:\n
+    python3 fucking_musescore.py [乐谱url] [乐谱名] [目标目录]
+    example:
+    python3 fucking_musescore.py https://musescore.xxx/xxxxx &quot;for elise&quot; &quot;.&quot;&#39;&#39;&#39;)
+    exit(1)
+else:
+    targetURL=sys.argv[1]
+    mname=sys.argv[2]
+
+fdir=&#39;/tmp/&#39;+mname
+
+imgSvgs=[]
+svgNames=[]
+
+
+def downloadSvgs() -&gt; None:
+    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+
+    driver.get(targetURL)
+
+    # 全屏然后加载所有琴谱
+
+    btn=driver.find_element(By.CSS_SELECTOR,&#39;button[title=&quot;Toggle Fullscreen&quot;]&#39;)
+    btn.click()
+
+    driver.implicitly_wait(5)
+
+    # driver.execute_script(&#39;window.scrollBy(document.body.scrollWdith,0)&#39;)
+    time.sleep(5)
+    root=driver.find_element(By.TAG_NAME,&#39;html&#39;)
+    scroller=driver.find_element(By.ID,&#39;jmuse-scroller-component&#39;)
+    for i in range(3):
+        root.send_keys(Keys.RIGHT)
+        time.sleep(0.3)
+
+    imgs=scroller.find_elements(By.TAG_NAME,&#39;img&#39;)
+
+    print(&#39;共 &#123;0&#125; 张曲谱&#39;.format(len(imgs)))
+
+    if not os.path.exists(fdir):
+        # print(&#39;目录 &#123;0&#125; 不存在，创建&#39;.format(os.getcwd()+&#39;/&#39;+fdir))
+        os.makedirs(fdir)
+
+    headers=&#123;
+        &#39;Accept&#39;:&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;,
+        &#39;Accept-Encoding&#39;:&#39;gzip, deflate, br&#39;,
+        &#39;User-Agent&#39;:&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 Edge/16.16299&#39;,
+    &#125;
+
+
+
+    for i in range(len(imgs)):
+        # print(&#39;第 &#123;0&#125; 张图片,&#123;1&#125;,src=&#123;2&#125;&#39;.format(i+1,imgs[i].get_attribute(&#39;alt&#39;),imgs[i].get_attribute(&#39;src&#39;)))
+        svgName=imgs[i].get_attribute(&#39;alt&#39;)
+        imgurl=imgs[i].get_attribute(&#39;src&#39;)
+        imgPath=fdir+&#39;/&#39;+svgName+&#39;.svg&#39;
+        svgNames.append(svgName)
+
+        with open(imgPath,&#39;wb&#39;) as f:
+            f.write(requests.get(imgurl,headers=headers).content)
+            imgSvgs.append(imgPath)
+
+def svgs2Pdf(svgs:list,svgNames:list) -&gt; str:
+    targetDir=sys.argv[3]
+    targetPdf=targetDir+&#39;/&#39;+mname+&#39;.pdf&#39;
+    tmpPdfs=[]
+
+    #所有svg转换成pdf
+    for i in range(len(svgs)):
+        svgPath=svgs[i]
+        pdfPath=&#39;/tmp/&#39;+svgNames[i]+&#39;.pdf&#39;
+        tmpPdfs.append(pdfPath)
+        svg2pdf(url=svgPath,write_to=pdfPath)
+
+    #合并
+    merger=PdfWriter()
+    for i in tmpPdfs:
+        merger.append(i)
+    merger.write(targetPdf)
+    merger.close()
+
+    return targetPdf
+
+def main():
+    #下载曲谱svg
+    downloadSvgs()
+    # print(imgSvgs)
+    targetPdf=svgs2Pdf(imgSvgs,svgNames)
+    # 删除临时目录
+    print(&#39;删除临时目录 &#123;0&#125; ...&#39;.format(fdir))
+    try:
+        os.system(&#39;rm -rf &quot;&#123;0&#125;&quot;&#39;.format(fdir))
+    finally:
+        print(&#39;删除临时目录成功...\n乐谱pdf位于 &quot;&#123;0&#125;&quot;&#39;.format(targetPdf))
+
+if __name__==&#39;__main__&#39;:
+    main()
+</code></pre>
+    </div>
+  </div>
+</article> 
+  </div>
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+
+
+<script src="/js/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<div id="footer"></div>
+ 
+</body>
