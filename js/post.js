@@ -11,7 +11,7 @@ const deactiveProps = {
 const activeProps = {
   fontSize: "1.2em",
   opacity: "1",
-  color: "#bca7d7cf",
+  color: "rgba(134, 175, 195, 0.91)",
 };
 
 window.onload = function () {

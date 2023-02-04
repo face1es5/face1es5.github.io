@@ -15,7 +15,7 @@
 aside {
   box-sizing: border-box;
   width: 18%;
-  max-height: 600px;
+  max-height: 700px;
   margin-bottom: 1em;
   background: rgba(49,46,46,0.66);
   color: #000;
@@ -25,6 +25,21 @@ aside {
   overflow: auto;
   font-size: 0.9em;
   word-break: keep-all;
+}
+aside::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: rgba(29,29,29,0.518);
+}
+aside::-webkit-scrollbar-corner {
+  background: rgba(29,29,29,0.518);
+}
+aside::-webkit-scrollbar-thumb {
+  background-color: #5a5757;
+  border-radius: 0.5rem;
+}
+aside::-webkit-scrollbar-thumb:hover {
+  background-color: #959595;
 }
 #navigator ol {
   list-style: none;
@@ -90,7 +105,7 @@ aside .anchor-item a:hover {
   height: 3px;
   margin: 0.5em auto 3em auto;
   background: #808080;
-  box-shadow: 2px 5px 10px #ffd700;
+  box-shadow: 2px 5px 10px #efe895;
 }
 #postBody {
   margin: 10px auto 5rem auto;
