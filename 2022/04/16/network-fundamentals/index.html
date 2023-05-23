@@ -174,13 +174,13 @@
 <p>用airmon-ng提醒邻居提高wifi强度(小心真人快打)的时候,就要开启网卡监听模式.</p>
 <p><a target="_blank" rel="noopener" href="https://network.fasionchan.com/zh_CN/latest/practices/ethernet-programming-c.html#">这里有一个简易的ethernet协议C语言实现</a></p>
 <p><br></br><br></br></p>
-<h1 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h1><p>IP,IP,You mom’s P.</p>
+<h1 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h1><p>IP,IP,You mom&#39;s P.</p>
 <p><br></br></p>
 <h2 id="Concept"><a href="#Concept" class="headerlink" title="Concept"></a>Concept</h2><p>虽然IP说到底就是一个根据区域划分的唯一标识符,但初接触时还是会遇到一些不太友好的概念.</p>
 <p><code>IP</code>,Internet Protocol,位于传输层之下,链路层之上.主要的作用是根据源IP与目的IP实现两台主机之间的数据传输,为此定义了数据结构和寻址方法.</p>
 <p>wiki:</p>
 <blockquote>
-<p>数据在IP互联网中传送时会封装为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E5%8C%85">数据包</a>.网际协议的独特之处在于:在报文交换网络中主机在传输数据之前,无须与先前未曾通信过的目的主机预先创建好特定的”通路”.互联网协议提供了<strong>不可靠</strong>的数据包传输机制(也称”尽力而为”或”尽最大努力交付”)；也就是说,它<strong>不保证数据能准确的传输</strong>.数据包在到达的时候<strong>可能已经损坏,顺序错乱</strong>(与其它一起传送的报文相比),产生冗余包,或者全部丢失.如果<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6">应用</a>需要保证可靠性,一般需要采取其他的方法,例如利用IP的上层协议控制(TCP).</p>
+<p>数据在IP互联网中传送时会封装为<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%95%B0%E6%8D%AE%E5%8C%85">数据包</a>.网际协议的独特之处在于:在报文交换网络中主机在传输数据之前,无须与先前未曾通信过的目的主机预先创建好特定的&quot;通路&quot;.互联网协议提供了<strong>不可靠</strong>的数据包传输机制(也称&quot;尽力而为&quot;或&quot;尽最大努力交付&quot;)；也就是说,它<strong>不保证数据能准确的传输</strong>.数据包在到达的时候<strong>可能已经损坏,顺序错乱</strong>(与其它一起传送的报文相比),产生冗余包,或者全部丢失.如果<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E8%BD%AF%E4%BB%B6">应用</a>需要保证可靠性,一般需要采取其他的方法,例如利用IP的上层协议控制(TCP).</p>
 </blockquote>
 <p><code>IP Address</code> 32位整数,每8位为一段,每段范围<code>0-255</code></p>
 <p><code>netmask</code> 子网掩码</p>
@@ -195,7 +195,7 @@
 <blockquote>
 <p>网关(说实话,我觉得网管更贴切).<strong>网关</strong>其实是用来<strong>路由</strong>的设备的<strong>IP地址</strong>,所谓的路由,抽象的说就是将数据包传输到目的IP的主机上.</p>
 <p>那么,用自己的电脑路由不行吗?当然是行的(比如openwrt,笔者的树莓派就用来当路由器),但是有专门用来路由的设备 - router(路由器).</p>
-<p>这样,连接到同一路由器的主机发送的数据包都由路由器统一转发,然后路由器又转发到另一个路由器… 最后到达目的地.</p>
+<p>这样,连接到同一路由器的主机发送的数据包都由路由器统一转发,然后路由器又转发到另一个路由器... 最后到达目的地.</p>
 </blockquote>
 <p><code>dns</code></p>
 <blockquote>
@@ -581,7 +581,7 @@
 <h3 id="Sweetie"><a href="#Sweetie" class="headerlink" title="Sweetie"></a>Sweetie</h3><p>对于一些需要可靠传输的应用来说,TCP很有用,但是TCP并不适用与所有场合.</p>
 <p>举个简单的例子,网络游戏,比如LOL,用的是UDP,虽然UDP只管传不管到没到,但这对LOL来说是可以忍受的,丢包只会让画面有些卡顿</p>
 <p>但如果是TCP,首先TCP会将数据流分组,或者说缓存了一定大小的数据包才发送,这表示如果你按了个技能,这个数据太小导致TCP没有发送它而是和后续数据一块发,这显然是不能接受的,因为网络游戏需要即时反馈,不过可以通过<code>TCP_NODELAY</code>设置成直接发送.</p>
-<p>但是还有一个问题,TCP丢包后会重发,这表示即使有那么一点点不关键的画面丢失了,TCP仍然会重新发包,然后接受端就得一直等丢失的包重传过来,1s,2s,4s… 作为一个玩家,我显然是不会玩这么猪比的游戏的,我宁愿接受UDP的漂移,也不要TCP的卡顿63s后的流畅画面</p>
+<p>但是还有一个问题,TCP丢包后会重发,这表示即使有那么一点点不关键的画面丢失了,TCP仍然会重新发包,然后接受端就得一直等丢失的包重传过来,1s,2s,4s... 作为一个玩家,我显然是不会玩这么猪比的游戏的,我宁愿接受UDP的漂移,也不要TCP的卡顿63s后的流畅画面</p>
 <p>这篇文章讲的还行:<a target="_blank" rel="noopener" href="http://foryoung365.github.io/development/2016/09/08/tcpvsudp">link</a></p>
 <h2 id="Connect-Termination"><a href="#Connect-Termination" class="headerlink" title="Connect Termination"></a>Connect Termination</h2><p>结束已经建立TCP连接,这个过程叫做4次挥手👋</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/6100773-2aa2de2af9a76955.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img"></p>
@@ -620,7 +620,7 @@
 <p>基于<code>Ethernet</code>,可以实现局域网内的数据传输.</p>
 <p>基于<code>IP</code>,可以实现不同局域网内的主机间的数据传输.</p>
 <p>基于<code>TCP</code>,可以实现不同局域网内的主机间的<strong>端口间的</strong>的<strong>可靠</strong>数据传输.</p>
-<p>数据包的封装顺序是从上而下的(上层协议的数据包传递给下层,作为下一层协议的<strong>数据部分</strong>,然后在<strong>头部</strong>写入该层协议的信息,再传递给下一层…),处理是自上而下的,下层的数据被解包,数据部分传递给上一层.</p>
+<p>数据包的封装顺序是从上而下的(上层协议的数据包传递给下层,作为下一层协议的<strong>数据部分</strong>,然后在<strong>头部</strong>写入该层协议的信息,再传递给下一层...),处理是自上而下的,下层的数据被解包,数据部分传递给上一层.</p>
 </blockquote>
 <p>假设访问google,使用<code>post</code>请求(通常,<code>get</code>请求不会携带数据),首先要获得google.com的IP地址,查询IP使用的是DNS协议,这里不再赘述,通过dig查看IP:</p>
 <p><img src="https://github.com/faceless00/forimg/raw/main/hexo/22-04-19/beeec0bc5cd15c7eccf8bacf670b9756.png" alt="image-20220419132510285"></p>
@@ -691,7 +691,7 @@
 <p><code>TLDR:在通信双方交换公钥之前,中间人用自己的公钥掉包原公钥,而通信端没有手段验证公钥的合法性.</code></p>
 <p>因此,为了解决中间人攻击的问题,需要一个可靠的被信任的第三方机构提供验证公钥合法性的手段 - 证书.</p>
 <blockquote>
-<p>颁发证书的机构叫证书机构(我承认这是一句废话),证书机构会给网站颁发证书的过程(当然,一般是要收钱的) - 网站拥有者把自己的个人信息(比如邮箱,网站域名…)和公钥一起提交给证书机构,证书机构用自己的私钥加密的数据就是证书.</p>
+<p>颁发证书的机构叫证书机构(我承认这是一句废话),证书机构会给网站颁发证书的过程(当然,一般是要收钱的) - 网站拥有者把自己的个人信息(比如邮箱,网站域名...)和公钥一起提交给证书机构,证书机构用自己的私钥加密的数据就是证书.</p>
 </blockquote>
 <p>现在,bar给foo发送公钥的时候还会顺带发送自己的证书,foo使用证书机构的公钥解密证书,然后验证自己收到的公钥是否和证书记录的一致,如果一致,那就没问题.</p>
 <p>虽然pee可以监听请求,但是他对证书无能为力.首先,他不能篡改证书,毕竟他没有证书机构的私钥对篡改后的数据重新加密,其次他也没有证书证明foo访问的网站的公钥是pee的公钥(毕竟网站不是他的,证书机构不至于如此猪比).所以现在中间人攻击就被解决辣!</p>

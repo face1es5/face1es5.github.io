@@ -43,7 +43,7 @@
 
 <div id="post">
   <aside id="navigator">
-    <ol class="anchor"><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#Prerequisites"><span class="anchor-number">1.</span> <span class="anchor-text">Prerequisites</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#AVL-%E6%A0%91"><span class="anchor-number">1.1.</span> <span class="anchor-text">AVL 树</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Definition"><span class="anchor-number">1.1.1.</span> <span class="anchor-text">Definition</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#%E5%B9%B3%E8%A1%A1"><span class="anchor-number">1.1.2.</span> <span class="anchor-text">平衡</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="anchor-number">1.1.3.</span> <span class="anchor-text">代码实现</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Conclusion"><span class="anchor-number">1.1.4.</span> <span class="anchor-text">Conclusion</span></a></li></ol></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#B-tree"><span class="anchor-number">1.2.</span> <span class="anchor-text">B tree</span></a></li></ol></li><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#Content"><span class="anchor-number">2.</span> <span class="anchor-text">Content</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-1-Introduction-and-Setting-up-the-REPL"><span class="anchor-number">2.1.</span> <span class="anchor-text">Part 1-Introduction and Setting up the REPL</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Sqlite"><span class="anchor-number">2.1.1.</span> <span class="anchor-text">Sqlite</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Making-a-Simple-REPL"><span class="anchor-number">2.1.2.</span> <span class="anchor-text">Making a Simple REPL</span></a></li></ol></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-2-World%E2%80%99s-Simplest-SQL-Compiler-and-Virtual-Machine"><span class="anchor-number">2.2.</span> <span class="anchor-text">Part 2 - World’s Simplest SQL Compiler and Virtual Machine</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part3-An-In-Memory-Append-Only-Single-Table-Database"><span class="anchor-number">2.3.</span> <span class="anchor-text">Part3 - An In-Memory,Append-Only,Single-Table Database</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-4-Our-First-Tests-and-Bugs"><span class="anchor-number">2.4.</span> <span class="anchor-text">Part 4 - Our First Tests (and Bugs)</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-5-Persistence-to-Disk"><span class="anchor-number">2.5.</span> <span class="anchor-text">Part 5 - Persistence to Disk</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Conclusion-1"><span class="anchor-number">2.5.1.</span> <span class="anchor-text">Conclusion</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Complete-Diff"><span class="anchor-number">2.5.2.</span> <span class="anchor-text">Complete Diff</span></a></li></ol></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-6-The-Cursor-Abstraction"><span class="anchor-number">2.6.</span> <span class="anchor-text">Part 6 - The Cursor Abstraction</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-7-Introduction-to-the-B-Tree"><span class="anchor-number">2.7.</span> <span class="anchor-text">Part 7 - Introduction to the B-Tree</span></a></li></ol></li></ol>
+    <ol class="anchor"><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#Prerequisites"><span class="anchor-number">1.</span> <span class="anchor-text">Prerequisites</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#AVL-%E6%A0%91"><span class="anchor-number">1.1.</span> <span class="anchor-text">AVL 树</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Definition"><span class="anchor-number">1.1.1.</span> <span class="anchor-text">Definition</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#%E5%B9%B3%E8%A1%A1"><span class="anchor-number">1.1.2.</span> <span class="anchor-text">平衡</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="anchor-number">1.1.3.</span> <span class="anchor-text">代码实现</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Conclusion"><span class="anchor-number">1.1.4.</span> <span class="anchor-text">Conclusion</span></a></li></ol></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#B-tree"><span class="anchor-number">1.2.</span> <span class="anchor-text">B tree</span></a></li></ol></li><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#Content"><span class="anchor-number">2.</span> <span class="anchor-text">Content</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-1-Introduction-and-Setting-up-the-REPL"><span class="anchor-number">2.1.</span> <span class="anchor-text">Part 1-Introduction and Setting up the REPL</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Sqlite"><span class="anchor-number">2.1.1.</span> <span class="anchor-text">Sqlite</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Making-a-Simple-REPL"><span class="anchor-number">2.1.2.</span> <span class="anchor-text">Making a Simple REPL</span></a></li></ol></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-2-World-39-s-Simplest-SQL-Compiler-and-Virtual-Machine"><span class="anchor-number">2.2.</span> <span class="anchor-text">Part 2 - World&#39;s Simplest SQL Compiler and Virtual Machine</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part3-An-In-Memory-Append-Only-Single-Table-Database"><span class="anchor-number">2.3.</span> <span class="anchor-text">Part3 - An In-Memory,Append-Only,Single-Table Database</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-4-Our-First-Tests-and-Bugs"><span class="anchor-number">2.4.</span> <span class="anchor-text">Part 4 - Our First Tests (and Bugs)</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-5-Persistence-to-Disk"><span class="anchor-number">2.5.</span> <span class="anchor-text">Part 5 - Persistence to Disk</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Conclusion-1"><span class="anchor-number">2.5.1.</span> <span class="anchor-text">Conclusion</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#Complete-Diff"><span class="anchor-number">2.5.2.</span> <span class="anchor-text">Complete Diff</span></a></li></ol></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-6-The-Cursor-Abstraction"><span class="anchor-number">2.6.</span> <span class="anchor-text">Part 6 - The Cursor Abstraction</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#Part-7-Introduction-to-the-B-Tree"><span class="anchor-number">2.7.</span> <span class="anchor-text">Part 7 - Introduction to the B-Tree</span></a></li></ol></li></ol>
   </aside>
   <div id="content">
     <div id="postHead">
@@ -128,7 +128,7 @@ node* LeftRotate(node* cur) &#123;	//左旋cur
 <p><img src="https://github.com/faceless00/forimg/raw/main/hexo/22-04-11/be1b88cbb344601ef3faee1320fafe5a.png" alt="image-20220411225944026">于是又平衡了</p>
 <p>当然，LR 型包含了三种情况，这里是<code>RRR</code>节点的平衡因子为<code>-1</code>，还有<code>0 1</code>这两种，但是本质上都是通过左旋<code>RL</code>节点，变成<code>LL</code>型，然后右旋<code>R</code>最终平衡</p>
 <p>至于<code>RR,RL</code>型，和<code>LL,LR</code>是<strong>对称</strong>操作，这里不再赘述</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>懒得写…以后补</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>懒得写...以后补</p>
 <p><code>AVL</code>与普通<code>BST</code>有区别的操作在于<strong>插入和删除</strong>时，需要对可能受影响的节点平衡，可能受影响的节点，实际上就是操作节点的所有祖先节点，因为这些节点的平衡因子会发生变化(子树高度变了)</p>
 <h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>实际上，<code>AVL</code>就是一棵特殊的<code>BST</code>，只是对高度进行了限制，那么，<code>AVL</code>的应用场景在什么地方捏？</p>
 <p>传统的<code>BST</code>很容易退化成一条链，这时的查找复杂度就变成了<code>O(n)</code>，而<code>AVL</code>通过平衡，保证树整体结构相对对称，查找复杂度总是<code>O(logn)</code></p>
@@ -171,7 +171,7 @@ node* LeftRotate(node* cur) &#123;	//左旋cur
 <p><a target="_blank" rel="noopener" href="https://en.wiktionary.org/wiki/a_journey_of_a_thousand_miles_begins_with_a_single_step">千里之行，始于足下</a>，所以让我们以更直接的方式开始:<code>the REPL(read-eval-print loop)</code></p>
 <h3 id="Making-a-Simple-REPL"><a href="#Making-a-Simple-REPL" class="headerlink" title="Making a Simple REPL"></a>Making a Simple REPL</h3><p>当从命令行执行 sqlite 时，会进入一个读取-执行-输出循环:</p>
 <blockquote>
-<p>~ sqlite3<br>SQLite version 3.16.0 2016-11-04 19:09:39<br>Enter “.help” for usage hints.<br>Connected to a transient in-memory database.<br>Use “.open FILENAME” to reopen on a persistent database.<br>sqlite&gt; create table users (id int, username varchar(255), email varchar(255));<br>sqlite&gt; .tables<br>users<br>sqlite&gt; .exit<br>~</p>
+<p>~ sqlite3<br>SQLite version 3.16.0 2016-11-04 19:09:39<br>Enter &quot;.help&quot; for usage hints.<br>Connected to a transient in-memory database.<br>Use &quot;.open FILENAME&quot; to reopen on a persistent database.<br>sqlite&gt; create table users (id int, username varchar(255), email varchar(255));<br>sqlite&gt; .tables<br>users<br>sqlite&gt; .exit<br>~</p>
 </blockquote>
 <p>为了实现这个，我们的 main 函数将会有一个无止境的循环，打印提示，获取一行输入，然后执行这行输入:</p>
 <pre><code class="cpp">int main(int argc, char* argv[]) &#123;
@@ -245,7 +245,7 @@ InputBuffer* new_input_buffer()&#123;
 </code></pre>
 <p>现在尝试运行它吧~</p>
 <blockquote>
-<p>~ .&#x2F;db<br>db &gt; .tables<br>Unrecognized command ‘.tables’.<br>db &gt; .exit<br>~</p>
+<p>~ .&#x2F;db<br>db &gt; .tables<br>Unrecognized command &#39;.tables&#39;.<br>db &gt; .exit<br>~</p>
 </blockquote>
 <p>好了，我们得到了一个有用的REPL.在下一部分，将要开发我们的命令语言.</p>
 <p>顺便，这是这部分的全部代码:</p>
@@ -305,7 +305,7 @@ int main(int argc, char* argv[]) &#123;
   &#125;
 &#125;
 </code></pre>
-<h2 id="Part-2-World’s-Simplest-SQL-Compiler-and-Virtual-Machine"><a href="#Part-2-World’s-Simplest-SQL-Compiler-and-Virtual-Machine" class="headerlink" title="Part 2 - World’s Simplest SQL Compiler and Virtual Machine"></a>Part 2 - World’s Simplest SQL Compiler and Virtual Machine</h2><p>我们正在克隆一份sqlite.sqlite的<strong>前端</strong>是一个SQL编译器，用来解析输入的字符串然后输出一种叫做<code>bytecode</code>(字节码)的内部表示.</p>
+<h2 id="Part-2-World-39-s-Simplest-SQL-Compiler-and-Virtual-Machine"><a href="#Part-2-World-39-s-Simplest-SQL-Compiler-and-Virtual-Machine" class="headerlink" title="Part 2 - World&#39;s Simplest SQL Compiler and Virtual Machine"></a>Part 2 - World&#39;s Simplest SQL Compiler and Virtual Machine</h2><p>我们正在克隆一份sqlite.sqlite的<strong>前端</strong>是一个SQL编译器，用来解析输入的字符串然后输出一种叫做<code>bytecode</code>(字节码)的内部表示.</p>
 <p>bytecode被传入虚拟机,然后由虚拟机执行.</p>
 <p><img src="https://cstack.github.io/db_tutorial/assets/images/arch2.gif" alt="img"></p>
 <p>将事情分成这样的两步有2个好处:</p>
@@ -361,7 +361,7 @@ int main(int argc, char* argv[]) &#123;
 typedef enum &#123; PREPARE_SUCCESS, PREPARE_UNRECOGNIZED_STATEMENT &#125; PrepareResult;
 </code></pre>
 </blockquote>
-<p>“Unrecognized statement”?这有点像一个 exception.我不太喜欢使用exception(而且C甚至都不支持)，所以我在任何可行的地方都是用<code>enum result code</code>.如果switch语句没有处理其中一个枚举成员，C编译器会报错，所以我们可以更有信心地处理函数的每个结果.预计未来会添加更多<code>result code</code>.</p>
+<p>&quot;Unrecognized statement&quot;?这有点像一个 exception.我不太喜欢使用exception(而且C甚至都不支持)，所以我在任何可行的地方都是用<code>enum result code</code>.如果switch语句没有处理其中一个枚举成员，C编译器会报错，所以我们可以更有信心地处理函数的每个结果.预计未来会添加更多<code>result code</code>.</p>
 <p>do_meta_command只是现有功能的一个装饰器，用来给更多命令预留空间.</p>
 <pre><code class="cpp">MetaCommandResult do_meta_command(InputBuffer* input_buffer) &#123;
   if (strcmp(input_buffer-&gt;buffer, &quot;.exit&quot;) == 0) &#123;
@@ -378,7 +378,7 @@ typedef struct &#123;
   StatementType type;
 &#125; Statement;
 </code></pre>
-<p>prepare_statement(我们的”SQL编译器”)现在还不能理解SQL语句.实际上它只能理解两个词:</p>
+<p>prepare_statement(我们的&quot;SQL编译器&quot;)现在还不能理解SQL语句.实际上它只能理解两个词:</p>
 <pre><code class="cpp">PrepareResult prepare_statement(InputBuffer* input_buffer,
                                 Statement* statement) &#123;
   if (strncmp(input_buffer-&gt;buffer, &quot;insert&quot;, 6) == 0) &#123;
@@ -409,9 +409,9 @@ typedef struct &#123;
 <p>注意函数不返回任何错误码,因为目前还不会出现错误.</p>
 <p>重构之后，现在可以识别两个新关键字了!</p>
 <blockquote>
-<p>~ .&#x2F;db<br>db &gt; insert foo bar<br>This is where we would do an insert.<br>Executed.<br>db &gt; delete foo<br>Unrecognized keyword at start of ‘delete foo’.<br>db &gt; select<br>This is where we would do a select.<br>Executed.<br>db &gt; .tables<br>Unrecognized command ‘.tables’<br>db &gt; .exit<br>~</p>
+<p>~ .&#x2F;db<br>db &gt; insert foo bar<br>This is where we would do an insert.<br>Executed.<br>db &gt; delete foo<br>Unrecognized keyword at start of &#39;delete foo&#39;.<br>db &gt; select<br>This is where we would do a select.<br>Executed.<br>db &gt; .tables<br>Unrecognized command &#39;.tables&#39;<br>db &gt; .exit<br>~</p>
 </blockquote>
-<p>我们数据库程序的骨架正在逐步构建…如果它能够存储数据那不是更好吗?在下一章，我们将会实现<code>insert</code>和<code>select</code>,创建世界上最糟糕~的数据存储.顺便，这里有本章的所有改动:</p>
+<p>我们数据库程序的骨架正在逐步构建...如果它能够存储数据那不是更好吗?在下一章，我们将会实现<code>insert</code>和<code>select</code>,创建世界上最糟糕~的数据存储.顺便，这里有本章的所有改动:</p>
 <pre><code class="cpp">@@ -10,6 +10,23 @@ struct InputBuffer_t &#123;
  &#125; InputBuffer;
  
@@ -1008,7 +1008,7 @@ Finished in 0.00871 seconds (files took 0.09506 seconds to load)
   expect(result[-2]).to eq(&#39;db &gt; Error: Table full.&#39;)
 end
 </code></pre>
-<p>重新测试…</p>
+<p>重新测试...</p>
 <pre><code>Finished in 0.01553 seconds (files took 0.08156 seconds to load)
 2 examples, 0 failures
 </code></pre>
@@ -1096,11 +1096,11 @@ end
 <p>但是<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2430303/disadvantages-of-scanf">scanf有一些缺点</a>.如果读取的长度大于目标缓冲区的长度，会造成缓冲区移除并将多余的数据写入预期之外的地方.我们希望在将数据copy到Row结构体内之前先检查每个字符串的长度.为了实现这个功能，我们需要用空格将输入分割成几个部分.</p>
 <blockquote>
 <p>译者注: 事实上，不完全正确.</p>
-<p>可以用格式字符串限制长度	scanf(“%<code>wid</code>s”,s1)</p>
+<p>可以用格式字符串限制长度	scanf(&quot;%<code>wid</code>s&quot;,s1)</p>
 <p>例如限制字符串长度为100	<code>scanf(&quot;%100s&quot;,s1)</code></p>
 <p>遇到<code>blank</code>或者读取100个字符就会结束.不过需要自己确保s1有额外空间保存<code>\0</code>字符</p>
-<p><code>blank</code>: 指 空格(space),制表符(Tab),回车符(‘\n’).</p>
-<p>scanf还有很多特性，比如会忽略开头的所有空白符，%c返回键盘缓冲区的第一个字符(包括回车)…</p>
+<p><code>blank</code>: 指 空格(space),制表符(Tab),回车符(&#39;\n&#39;).</p>
+<p>scanf还有很多特性，比如会忽略开头的所有空白符，%c返回键盘缓冲区的第一个字符(包括回车)...</p>
 <p>感兴趣<a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/io/c/fscanf">自行查阅</a></p>
 </blockquote>
 <p>使用<a target="_blank" rel="noopener" href="http://www.cplusplus.com/reference/cstring/strtok/">strtok()</a>来实现这个功能:</p>
@@ -1653,7 +1653,7 @@ db &gt; .exit
 <p>文件格式</p>
 <p><img src="https://cstack.github.io/db_tutorial/assets/images/file-format.png" alt="img: Current File Format"></img></p>
 <p>开头4个字节是第一行的id(4个字节因为id是<code>uint32_t</code>),它是以<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/%E5%AD%97%E8%8A%82%E5%BA%8F">小端格式</a>存储的,所以最低位字节为<code>0x01</code>,其他3为都为0x00.我们使用<code>memcpy</code>将Row结构体中的数据拷贝到page缓存,所以这也意味着内存中的结构体变量也是以小端序存储的.大端序还是小端序是由机器决定的(例如intel就是小端),如果我们在自己的机器上写入数据库文件，然后在另一个大端序的机器上读取，就需要完善<code>serialize_row()</code>和<code>deserialize_row()</code>函数，一直用同一种顺序存储和写入字节.</p>
-<p>后面的33字节存储<code>username</code>字符串，以<code>null字符</code>为结尾.显然”cstack”的ASCII码的16进制格式为 <code>63 73 74 61 63 6b</code>,紧接着是一个null字符(0x00).剩余的33字节未被使用.</p>
+<p>后面的33字节存储<code>username</code>字符串，以<code>null字符</code>为结尾.显然&quot;cstack&quot;的ASCII码的16进制格式为 <code>63 73 74 61 63 6b</code>,紧接着是一个null字符(0x00).剩余的33字节未被使用.</p>
 <p>username后面的256字节用同样的方式存储<code>email</code>，在null字符之后可以看到一些随机的junk，这玩意的来源很可能是Row结构体未初始化的内存.我们将整整256字节的email缓存拷贝入文件,当把内存分配给结构体时，内存中的内容还在那儿.但是因为我们用了null字符标识字符串末尾，所以不会有什么影响.</p>
 <p><strong>注意</strong>: 如果我们想要确保所有字节都会被初始化，使用<code>strncpy</code>将username和email拷贝进内存(而不是<code>memcpy</code>)就可以，就像这样:</p>
 <pre><code class="cpp"> void serialize_row(Row* source, void* destination) &#123;
@@ -2013,7 +2013,7 @@ db &gt; .exit
 +  &#125;
 +&#125;
 </code></pre>
-<p>最后我们需要让”虚拟机”的函数使用cursor这一抽象数据结构.当我们插入一行事，我们打开一个指向table末尾的cursor,数据写入到cursor对应的位置，然后释放cursor.</p>
+<p>最后我们需要让&quot;虚拟机&quot;的函数使用cursor这一抽象数据结构.当我们插入一行事，我们打开一个指向table末尾的cursor,数据写入到cursor对应的位置，然后释放cursor.</p>
 <pre><code class="cpp">   Row* row_to_insert = &amp;(statement-&gt;row_to_insert);
 +  Cursor* cursor = table_end(table);
 
@@ -2143,10 +2143,10 @@ db &gt; .exit
 <li>插入&#x2F;删除你找到的值非常快(平衡操作时间复杂度为O(1))</li>
 <li>遍历范围内的数值很快(而不像hash map)</li>
 </ul>
-<p>B-Tree和二叉树不同(“B”可能是来自发明者的名字,但也可能表示”平衡”).这里有一个B-Tree的例子:</p>
+<p>B-Tree和二叉树不同(&quot;B&quot;可能是来自发明者的名字,但也可能表示&quot;平衡&quot;).这里有一个B-Tree的例子:</p>
 <p>example B-Tree (<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/File:B-tree.svg">https://en.wikipedia.org/wiki/File:B-tree.svg</a>)</p>
 <p><a target="_blank" rel="noopener" href="https://cstack.github.io/db_tutorial/assets/images/B-tree.png"><img src="https://cstack.github.io/db_tutorial/assets/images/B-tree.png" alt="example B-Tree (https://en.wikipedia.org/wiki/File:B-tree.svg)"></a></p>
-<p>与二叉树不同，B-Tree的每一个节点可以有<strong>两个以上</strong>的孩子.每个节点<strong>至多拥有m个孩子</strong>,<code>m</code>叫做树的”阶”.为了保持树尽可能平衡，节点<strong>至少得拥有</strong><code>m/2</code>(<strong>四舍五入</strong>)个孩子.</p>
+<p>与二叉树不同，B-Tree的每一个节点可以有<strong>两个以上</strong>的孩子.每个节点<strong>至多拥有m个孩子</strong>,<code>m</code>叫做树的&quot;阶&quot;.为了保持树尽可能平衡，节点<strong>至少得拥有</strong><code>m/2</code>(<strong>四舍五入</strong>)个孩子.</p>
 <p>特殊情况:</p>
 <ul>
 <li>叶子节点没有孩子</li>
@@ -2211,7 +2211,7 @@ db &gt; .exit
 </tbody></table>
 
 <p>在我们实现index之前，我只会介绍B+Tree,但我会把它称为 B-Tree或者btree.</p>
-<p>有孩子的节点叫做”内部”节点，内部节点和叶子节点具有不同的结构:</p>
+<p>有孩子的节点叫做&quot;内部&quot;节点，内部节点和叶子节点具有不同的结构:</p>
 <table id="table">
 <thead>
 <tr>
@@ -2270,7 +2270,7 @@ db &gt; .exit
 <p>two-level btree</p>
 <p><a target="_blank" rel="noopener" href="https://cstack.github.io/db_tutorial/assets/images/btree3.png"><img src="https://cstack.github.io/db_tutorial/assets/images/btree3.png" alt="two-level btree"></a></p>
 <p>内部节点现在拥有1个key和2个指向孩子的指针.如果我们想要查找一个&lt;&#x3D;5的key,我们会在左孩子里查找，如果想找&gt;&#x3D;5的key,会在右孩子里查找.</p>
-<p>现在让我们插入key “2”.首先我们会查找它可能在里面的叶子节点,然后我们到达了左边的叶子节点.这个节点满了，所以我们分裂它然后在父节点中创建一个新的入口.</p>
+<p>现在让我们插入key &quot;2&quot;.首先我们会查找它可能在里面的叶子节点,然后我们到达了左边的叶子节点.这个节点满了，所以我们分裂它然后在父节点中创建一个新的入口.</p>
 <p>four-node btree</p>
 <p><a target="_blank" rel="noopener" href="https://cstack.github.io/db_tutorial/assets/images/btree4.png"><img src="https://cstack.github.io/db_tutorial/assets/images/btree4.png" alt="four-node btree"></a></p>
 <p>让我们继续增加key 18&amp;21，我们不得不再次分裂节点.但是父节点中没有空间存放另一个键值对了(key个数最多为m-1&#x3D;2).</p>

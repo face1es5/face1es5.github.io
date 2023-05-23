@@ -144,7 +144,7 @@ typedef enum : uint8_t
 +const uint8_t COMMON_NODE_HEADER_SIZE =
 +    NODE_TYPE_SIZE + IS_ROOT_SIZE + PARENT_POINTER_SIZE;
 </code></pre>
-<h3 id="Leaf-Node-Format"><a href="#Leaf-Node-Format" class="headerlink" title="Leaf Node Format"></a>Leaf Node Format</h3><p>除了这些通用的头部字段外，叶子节点需要存储包含的”cell”的数量.一个”cell”就是一个键值对.</p>
+<h3 id="Leaf-Node-Format"><a href="#Leaf-Node-Format" class="headerlink" title="Leaf Node Format"></a>Leaf Node Format</h3><p>除了这些通用的头部字段外，叶子节点需要存储包含的&quot;cell&quot;的数量.一个&quot;cell&quot;就是一个键值对.</p>
 <pre><code class="cpp">+/*
 + * Leaf Node Header Layout
 + */
@@ -412,7 +412,7 @@ typedef enum : uint8_t
 
    free(cursor);
 </code></pre>
-<p>通过这些改动，我们的数据库就能和之前一样工作了!除了现在它会更早地返回”Table 已满”错误，因为我们还不能分裂根节点.</p>
+<p>通过这些改动，我们的数据库就能和之前一样工作了!除了现在它会更早地返回&quot;Table 已满&quot;错误，因为我们还不能分裂根节点.</p>
 <p>叶子节点可以保存多少行呢?</p>
 <h3 id="Command-to-Print-Constants"><a href="#Command-to-Print-Constants" class="headerlink" title="Command to Print Constants"></a>Command to Print Constants</h3><p>我增加了一个新的元命令，用来打印一些有趣的常量.</p>
 <pre><code class="cpp">+void print_constants() &#123;
@@ -1190,7 +1190,7 @@ ExecuteResult execute_insert(Statement* statement, Table* table) &#123;
 <p>基于这些常量,内部节点的布局应该长这样:</p>
 <p>Our internal node format</p>
 <p><a target="_blank" rel="noopener" href="https://cstack.github.io/db_tutorial/assets/images/internal-node-format.png"><img src="https://cstack.github.io/db_tutorial/assets/images/internal-node-format.png" alt="内部节点布局"></a></p>
-<p>Notice our huge branching factor(不知道咋翻译…).因为每个<code>子节点指针&amp;键</code>组合相当小，每个内部节点可以存储510个键和511个孩子指针.这意味着我们几乎不会需要遍历树的很多层来找到一个给定的键值.</p>
+<p>Notice our huge branching factor(不知道咋翻译...).因为每个<code>子节点指针&amp;键</code>组合相当小，每个内部节点可以存储510个键和511个孩子指针.这意味着我们几乎不会需要遍历树的很多层来找到一个给定的键值.</p>
 <table id="table">
 <thead>
 <tr>
@@ -1617,7 +1617,7 @@ db &gt;
 <p>因为一共有15条记录,我们的btree包含一个内部节点和两个叶子节点，就像这样:</p>
 <p>structure of our btree</p>
 <p><a target="_blank" rel="noopener" href="https://cstack.github.io/db_tutorial/assets/images/btree3.png"><img src="https://cstack.github.io/db_tutorial/assets/images/btree3.png" alt="structure of our btree"></a></p>
-<p>为了扫描整个表,当我们到达第一个叶子节点的末尾后需要跳到第二个叶子节点.为了实现这个操作，我们将在叶子节点的头部存储一个新的字段 - “next_leaf”,该字段的值为该叶子节点的右边的兄弟节点的page number.最右边的叶子节点的<code>next_leaf</code>的值为0以表示它没有右兄弟(page<sub>0</sub>不论何时都预留给表的根节点).</p>
+<p>为了扫描整个表,当我们到达第一个叶子节点的末尾后需要跳到第二个叶子节点.为了实现这个操作，我们将在叶子节点的头部存储一个新的字段 - &quot;next_leaf&quot;,该字段的值为该叶子节点的右边的兄弟节点的page number.最右边的叶子节点的<code>next_leaf</code>的值为0以表示它没有右兄弟(page<sub>0</sub>不论何时都预留给表的根节点).</p>
 <p>更新叶子节点的头部格式以包含新的字段:</p>
 <pre><code class="cpp"> const uint32_t LEAF_NODE_NUM_CELLS_SIZE = sizeof(uint32_t);
  const uint32_t LEAF_NODE_NUM_CELLS_OFFSET = COMMON_NODE_HEADER_SIZE;
@@ -1686,7 +1686,7 @@ db &gt;
    &#125;
  &#125;
 </code></pre>
-<p>做了这些改动之后，我们雀食打印了15行了喔…</p>
+<p>做了这些改动之后，我们雀食打印了15行了喔...</p>
 <pre><code>db &gt; select
 (1, user1, person1@example.com)
 (2, user2, person2@example.com)
@@ -1706,7 +1706,7 @@ db &gt;
 Executed.
 db &gt;
 </code></pre>
-<p>…但是其中的一行看起来好像损坏了.</p>
+<p>...但是其中的一行看起来好像损坏了.</p>
 <p>在经过一些调试之后，我发现这个bug来自分裂叶子节点的函数:</p>
 <pre><code class="cpp">@@ -676,7 +690,9 @@ void leaf_node_split_and_insert(Cursor* cursor, uint32_t key, Row* value) &#123;
      void* destination = leaf_node_cell(destination_node, index_within_node);
@@ -1725,7 +1725,7 @@ db &gt;
 <p><a target="_blank" rel="noopener" href="https://cstack.github.io/db_tutorial/assets/images/leaf-node-format.png"><img src="https://cstack.github.io/db_tutorial/assets/images/leaf-node-format.png" alt="Original leaf node format"></a></p>
 <p>我们把待插入的行(的value)写入了cell的开头,而这应该是存储key的地方.这意味着username的一部分变成了id(导致id大的变态).</p>
 <blockquote>
-<p>译者注: 呃，让我来解释一下…</p>
+<p>译者注: 呃，让我来解释一下...</p>
 <p>cell的存储格式为key+value,但是分裂函数中只写入了value,而value是key+username+email,所以即使格式错了,但是key是对的,能被正确索引.</p>
 <p>但是读取的时候是直接读取value部分的,而这部分现在变成了username+email(本来应该是key+usn+email).</p>
 </blockquote>
@@ -2044,7 +2044,7 @@ db &gt;
 <li>如果父节点已满,分裂父节点: <code>internal_node_split_and_insert()</code><ul>
 <li>如果父节点为根节点,那么分裂根节点并且创建一个新的根节点</li>
 <li>父节点非根节点,那么需要更新父节点的父节点(即爷爷节点)的key,以及向爷爷节点插入一对子节点指针&amp;key<ul>
-<li>还需要考虑爷爷节点是否已满,所以这实际上是一个递归的过程…</li>
+<li>还需要考虑爷爷节点是否已满,所以这实际上是一个递归的过程...</li>
 </ul>
 </li>
 </ul>
@@ -2096,7 +2096,7 @@ cuint32 INTERNAL_NODE_SPLIT_LEFT_CHILD_COUNT=INTERNAL_NODE_MAX_CHILD+1-INTERNAL_
 <h3 id="Splitting-Algorithm-1"><a href="#Splitting-Algorithm-1" class="headerlink" title="Splitting Algorithm"></a>Splitting Algorithm</h3><p>分裂内部节点的操作和分裂叶子节点的逻辑差不多,只不过因为内部节点的特殊结构 - 元素为子节点指针&amp;key(即cell)的数组以及一个最右子节点指针,有很多边界条件需要判断.</p>
 <blockquote>
 <p>例如新增的节点为分裂后的节点的最右边孩子的情况.</p>
-<p>以及原本不是最右边节点的cell,但是因为分裂操作而变成了最右边子节点指针的情况…</p>
+<p>以及原本不是最右边节点的cell,但是因为分裂操作而变成了最右边子节点指针的情况...</p>
 </blockquote>
 <p>和分裂叶子节点一样.根据key值将内部节点分为upper和lower两个部分.upper里的任意元素的key都严格大于lower里的元素的最大的key.</p>
 <p>我就不详细讲了,代码如下:</p>
@@ -2200,7 +2200,7 @@ cuint32 INTERNAL_NODE_SPLIT_LEFT_CHILD_COUNT=INTERNAL_NODE_MAX_CHILD+1-INTERNAL_
 &#125;
 </code></pre>
 <blockquote>
-<p>注: 我也觉得写得很丑陋,但是我水平比较凑合所以将就看一下吧…</p>
+<p>注: 我也觉得写得很丑陋,但是我水平比较凑合所以将就看一下吧...</p>
 </blockquote>
 <p>在该函数中还使用了一个新的用于获取内部节点的最大key的函数<code>get_internal_node_max_key</code></p>
 <pre><code class="cpp">uint32_t get_internal_node_max_key(Pager* pager,void* node)&#123;
