@@ -27,8 +27,6 @@
     <a href="/categories ">categories</a>
      
     <a href="/aboutme ">aboutme</a>
-     
-    <a href="/diary ">diary</a>
     
   </div>
 </div>
@@ -43,7 +41,7 @@
 
 <div id="post">
   <aside id="navigator">
-    <ol class="anchor"><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#Chapter-2-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="anchor-number">1.</span> <span class="anchor-text">Chapter 2 信息的表示和处理</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#2-58-is-little-endian"><span class="anchor-number">1.1.</span> <span class="anchor-text">2.58 is_little_endian</span></a></li></ol></li></ol>
+    <ol class="anchor"><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#Chapter-2-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="anchor-number">1.</span> <span class="anchor-text">Chapter 2 信息的表示和处理</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#2-58-is-little-endian"><span class="anchor-number">1.1.</span> <span class="anchor-text">2.58 is_little_endian</span></a></li></ol></li><li class="anchor-item anchor-level-1"><a class="anchor-link" href="#Chapter3-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA"><span class="anchor-number">2.</span> <span class="anchor-text">Chapter3 程序的机器级表示</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-2-2"><span class="anchor-number">2.1.</span> <span class="anchor-text">3.2.2</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-6-1"><span class="anchor-number">2.2.</span> <span class="anchor-text">3.6.1</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-6-4"><span class="anchor-number">2.3.</span> <span class="anchor-text">3.6.4</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-6-5-fucking-if"><span class="anchor-number">2.4.</span> <span class="anchor-text">3.6.5 fucking if</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-6-6"><span class="anchor-number">2.5.</span> <span class="anchor-text">3.6.6</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-6-7-fucking-%E5%BE%AA%E7%8E%AF"><span class="anchor-number">2.6.</span> <span class="anchor-text">3.6.7 fucking 循环</span></a><ol class="anchor-child"><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#do-while"><span class="anchor-number">2.6.1.</span> <span class="anchor-text">do while</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#While"><span class="anchor-number">2.6.2.</span> <span class="anchor-text">While</span></a></li><li class="anchor-item anchor-level-3"><a class="anchor-link" href="#for-%E5%BE%AA%E7%8E%AF"><span class="anchor-number">2.6.3.</span> <span class="anchor-text">for 循环</span></a></li></ol></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-6-8-fucking-switch"><span class="anchor-number">2.7.</span> <span class="anchor-text">3.6.8 fucking switch</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-7-1-%E6%A0%88"><span class="anchor-number">2.8.</span> <span class="anchor-text">3.7.1 栈</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-8-3-%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="anchor-number">2.9.</span> <span class="anchor-text">3.8.3 多维数组</span></a></li><li class="anchor-item anchor-level-2"><a class="anchor-link" href="#3-9-1-%E7%BB%93%E6%9E%84"><span class="anchor-number">2.10.</span> <span class="anchor-text">3.9.1 结构</span></a></li></ol></li></ol>
   </aside>
   <div id="content">
     <div id="postHead">
@@ -66,6 +64,328 @@
     return (*(char *)(&amp;x))==0x34;
 &#125;
 </code></pre>
+<h1 id="Chapter3-程序的机器级表示"><a href="#Chapter3-程序的机器级表示" class="headerlink" title="Chapter3 程序的机器级表示"></a>Chapter3 程序的机器级表示</h1><blockquote>
+<p><code>call</code>指令:</p>
+<p>在学习3.2节的时候，关于<code>call</code>指令我感觉很迷惑，因为我发现偏移地址对不上。</p>
+<p>已知<code>call</code>相当于一个<code>push %rip</code>+<code>jmp [addr]</code>，而其中<code>jmp</code>的偏移地址体现在<code>call</code>指令后面跟的立即数上，例如，我们有一个引用别的源码函数的代码，在经过编译(而不是链接)后，它的代码格式是这样子:</p>
+<pre><code class="assembly">❯ objdump -d mstore.o
+
+mstore.o:	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000000000000 &lt;_multstore&gt;:
+    0: 55                           	pushq	%rbp
+    1: 48 89 e5                     	movq	%rsp, %rbp
+    4: 53                           	pushq	%rbx
+    5: 50                           	pushq	%rax
+    6: 48 89 d3                     	movq	%rdx, %rbx
+    9: e8 00 00 00 00               	callq	0xe &lt;_multstore+0xe&gt;
+    e: 48 89 03                     	movq	%rax, (%rbx)
+   11: 48 83 c4 08                  	addq	$8, %rsp
+   15: 5b                           	popq	%rbx
+   16: 5d                           	popq	%rbp
+   17: c3                           	retq
+</code></pre>
+<p>第9行的<code>call</code>指令后面跟着的立即数是0000，这可以理解，但是反编译的结果却表示它会跳到<code>0xe</code>地址，也就是<code>call</code>下面一行代码，这是为什么呢，<strong>call指令后面跟的立即数一般是目标函数相对于*%rip*的偏移</strong>，如果是0x000000，不是应该一直循环执行该指令吗？</p>
+<p>带着这样的疑惑，我们来看一个有确定跳转地址的例子:</p>
+<pre><code class="assembly">❯ objdump -d prog
+
+prog:	file format mach-o 64-bit x86-64
+
+Disassembly of section __TEXT,__text:
+
+0000000100003f30 &lt;_main&gt;:
+100003f30: 55                          	pushq	%rbp
+100003f31: 48 89 e5                    	movq	%rsp, %rbp
+100003f34: 48 83 ec 10                 	subq	$16, %rsp
+100003f38: 48 8d 55 f8                 	leaq	-8(%rbp), %rdx
+100003f3c: bf 02 00 00 00              	movl	$2, %edi
+100003f41: be 03 00 00 00              	movl	$3, %esi
+100003f46: e8 35 00 00 00              	callq	0x100003f80 &lt;_multstore&gt;
+100003f4b: 48 8b 75 f8                 	movq	-8(%rbp), %rsi
+100003f4f: 48 8d 3d 48 00 00 00        	leaq	72(%rip), %rdi          ## 0x100003f9e &lt;_printf+0x100003f9e&gt;
+100003f56: 31 c0                       	xorl	%eax, %eax
+100003f58: e8 3b 00 00 00              	callq	0x100003f98 &lt;_printf+0x100003f98&gt;
+100003f5d: 31 c0                       	xorl	%eax, %eax
+100003f5f: 48 83 c4 10                 	addq	$16, %rsp
+100003f63: 5d                          	popq	%rbp
+100003f64: c3                          	retq
+100003f65: 66 66 2e 0f 1f 84 00 00 00 00 00    	nopw	%cs:(%rax,%rax)
+
+#.........省略一段
+0000000100003f80 &lt;_multstore&gt;:
+100003f80: 55                          	pushq	%rbp
+100003f81: 48 89 e5                    	movq	%rsp, %rbp
+100003f84: 53                          	pushq	%rbx
+100003f85: 50                          	pushq	%rax
+100003f86: 48 89 d3                    	movq	%rdx, %rbx
+100003f89: e8 e2 ff ff ff              	callq	0x100003f70 &lt;_mult2&gt;
+100003f8e: 48 89 03                    	movq	%rax, (%rbx)
+100003f91: 48 83 c4 08                 	addq	$8, %rsp
+100003f95: 5b                          	popq	%rbx
+100003f96: 5d                          	popq	%rbp
+100003f97: c3                          	retq
+</code></pre>
+<p>位于<code>0x100003f46</code>地址的<code>call</code>指令应该跳转到函数<code>&lt;_multstore&gt;</code>的起始地址，也就是<code>0x0000000100003f80</code>，而其对应的指令是这样的:</p>
+<p><code>e8 35 00 00 00              	callq	0x100003f80 &lt;_multstore&gt;</code></p>
+<p>如果我们把调用地址加上偏移地址(小端法)，会发现对不上，<code>0x100003f46+0x35=0x100003f7b</code>，显然和跳转函数的起始地址不一样，但是呢我突然灵感乍现，因为我想起来王爽老师曾经说过<strong>ip寄存器始终指向下一条指令的地址</strong>，所以在执行<code>call</code>指令的时候，<code>%rip</code>的值实际上是<code>0x100003f4b</code>，那么这时候加上偏移地址的时候就契合了:<code>0x100003f4b+0x35=0x0x100003f80</code>。</p>
+<p>至于为什么<code>%rip</code>指向下一条而不是当前指令，额这是因为指令是先读取后执行的，而在读取之后<code>%rip</code>会加上当前指令的长度，所以在执行该指令的时候<code>%rip</code>就会指向下一条指令的地址啦(而且从逻辑上来讲既然已经把指令读取并解析完毕了，再指向这条指令也没什么意义~).</p>
+<blockquote>
+<p>3.6.4节中有详细解释，此处使用的是PC相对寻址，即<code>jmp</code>指令跟着的立即数是目标地址与执行该<code>jmp</code>指令时的<code>%rip</code>寄存器的差值</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>gcc编译参数:</p>
+<ul>
+<li>从源代码到汇编 <code>gcc -S xxx.c</code>，这一步生成的文件是可读的</li>
+<li>从源代码到机器语言 <code>gcc -C xxx.c</code></li>
+<li>符合原始C代码整体结构的机器代码优化等级 <code>gcc -Og ....</code></li>
+</ul>
+<p>使用objdump反汇编机器语言:</p>
+<p><code>objdump -d abcd.o</code></p>
+</blockquote>
+<h2 id="3-2-2"><a href="#3-2-2" class="headerlink" title="3.2.2"></a>3.2.2</h2><p>C语言在编译过程中只关心声明而不关心定义，对于只声明而未定义的变量和函数在编译时会填入一个空地址(一般是0)，而在链接的时候会把实际地址填入其中。</p>
+<p>所以如果一个函数引用了外部函数却没有引用头文件，但是在源代码中声明了函数原型，那编译也是可以通过的。进一步讲，就算包含了头文件，在宏扩展过程中实际上也是把一些头文件中包含的声明放到源代码里(前提是你真的只把声明放在头文件里)。</p>
+<h2 id="3-6-1"><a href="#3-6-1" class="headerlink" title="3.6.1"></a>3.6.1</h2><p>关于如何设置条件码中的<code>OF</code>也就是有符号数溢出标志位:</p>
+<p>假设执行的是<code>t=a+b</code>，那么判断条件是<code>(a&lt;0==b&lt;0) &amp;&amp; (t&lt;0!=a&lt;0)</code>。</p>
+<p>有符号溢出分为两种情况:</p>
+<ol>
+<li>正溢出, 两个正数相加得到一个<em><strong>负数</strong></em></li>
+<li>负溢出，两个负数相加得到一个<em><strong>正数</strong></em></li>
+</ol>
+<p>通过观察可以发现，要想溢出需要两个数字符号相同，所以第一个条件为<code>a&lt;0==b&lt;0</code>，然后，溢出后得到的计算结果和数字的符号相反，所以<code>t&lt;0!=a&lt;0</code>。</p>
+<p>那么，是否符号不同就不会产生溢出？并不是，正数和负数相加也会产生溢出，而这里的溢出是为了<strong>得到正确的结果</strong>。有符号数溢出的含义是溢出且得到了<strong>错误</strong>的结果。</p>
+<h2 id="3-6-4"><a href="#3-6-4" class="headerlink" title="3.6.4"></a>3.6.4</h2><pre><code class="assembly">0: 48 89 f8 mov %rdi,%rax
+3: eb 03 jmp 8 &lt;loop+0x8&gt;
+5: 48 d1 f8 sar %rax
+8: 48 85 c0 test %rax,%rax
+b: 7f f8 jg 5 &lt;loop+0x5&gt;
+d: f3 c3 repz retq 
+</code></pre>
+<p>对于地址b处的指令，由于是向上跳转，所以根据补码算得地址为<code>0xd(13)+0xf8(-8)=0x105</code>，而此次运算会产生溢出，但该条<code>jmp</code>指令的目标是单字节的，所以结果是<code>0x05</code>。</p>
+<h2 id="3-6-5-fucking-if"><a href="#3-6-5-fucking-if" class="headerlink" title="3.6.5 fucking if"></a>3.6.5 fucking if</h2><p>if语句有两种通用翻译形式:</p>
+<p>第一种为判断<code>!expr</code>:</p>
+<pre><code class="c">if (!expr)
+    goto FALSE;
+TRUE STATEMENT;
+goto DONE;
+FALSE:
+    ...
+DONE:
+    ...
+</code></pre>
+<p>第二种显然就是<code>expr</code>了:</p>
+<pre><code class="c">if (expr)
+    goto TRUE;
+FALSE STATEMENT;
+goto DONE;
+TRUE:
+    ...
+DONE:
+    ...
+</code></pre>
+<p>对于这两种翻译方法，一般来说是差不多的，不过如果没有<code>else</code>语句，用第一种更合适，因为这样第一种的形式为:</p>
+<pre><code class="c">if (!expr)
+    goto DONE;
+TRUE STATEMENT;
+DONE:
+    ...
+</code></pre>
+<p>而如果用第二种:</p>
+<pre><code class="c">if (expr)
+    goto TRUE;
+goto DONE;
+TRUE:
+    ...
+DONE:
+    ...
+</code></pre>
+<p>简单分析一下就知道相较于第一种情况，第二种翻译始终会执行一个跳转语句而第一种在表达式为假时才会执行，你知道我是有强迫症的，我不会允许这种事情发生!</p>
+<h2 id="3-6-6"><a href="#3-6-6" class="headerlink" title="3.6.6"></a>3.6.6</h2><p>对于p148的<code>cread</code>程序，我把它从:</p>
+<pre><code class="assembly">cread:
+    movq	(%rdi),%rax
+    testq %rdi,%rdi
+    movl $0,%edx
+    cmove %rdx,%rax
+    ret
+</code></pre>
+<p>改成了以下形式:</p>
+<pre><code class="assembly">cread:
+    movl	$0,%eax
+    testq	%rdi,%rdi
+    cmovne (%rdi),%rax
+    ret
+</code></pre>
+<p>按照我的想法，根据<code>%rdi</code>寄存器的值，<code>cmovne</code>指令会决定到底要不要从内存中取出数据并赋值到<code>%rax</code>中，所以不会引用野指针。</p>
+<p>我们可以用一个简单的程序来测试一下:</p>
+<pre><code class="c">#include &lt;stdio.h&gt;
+
+long fuck(long* a)&#123;
+  asm(&quot;movl $50,%eax\n&quot;
+    &quot;testq %rdi,%rdi\n&quot;
+    &quot;cmovne (%rdi),%rax\n&quot;
+    &quot;nop\n&quot;
+    &quot;pop %rbp\n&quot;
+    &quot;retq\n&quot;
+  );
+&#125;
+
+int main()&#123;
+  long x=123456;
+  x=fuck(&amp;x);
+  printf(&quot;%ld\n&quot;,x);
+  return 0;
+&#125;
+</code></pre>
+<p><code>nop</code>是用来标识我的内联汇编代码位置的，<code>pop %rbp</code>用来恢复现场，因为本函数中没有任何局部变量，并且参数是由<code>caller</code>压入栈中，所以直接恢复就行。</p>
+<p>然后使用标志<code>-O0</code>来编译，<code>O0</code>是一点不优化，如果使用<code>O1</code>或者<code>Og</code>会直接不掉用函数<code>fuck</code>(唉，fuck gcc)，经过编译以后我的<code>fuck</code>函数看起来是这样:</p>
+<pre><code class="assembly">&lt;_fuck&gt;:
+pushq	%rbp
+movq	%rsp, %rbp
+movq	%rdi, -16(%rbp)
+movl	$50, %eax
+testq	%rdi, %rdi
+cmovneq	(%rdi), %rax
+nop
+popq	%rbp
+retq
+movq	-8(%rbp), %rax
+popq	%rbp
+retq
+nopl	(%rax)
+</code></pre>
+<p>看起来很完美，不是吗？</p>
+<p>如果使用一个非空指针，那么结果是这样:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-07-11/image-20230711171925544.png" alt="image-20230711171925544">与我们的预期刚好相同，但如果使用一个NULL指针(也就是把源码中的<code>fuck(&amp;a)</code>改成<code>fuck(NULL</code>，结果是这样:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/face1es5/upic@main/2023-07-11/image-20230711172012608.png" alt="image-20230711172012608">产生栈溢出，说明我们的猜想不正确。</p>
+<p>至于为什么，我认为是<code>cmov</code>指令无论条件是否达到，都会先从内存中读取数据，条件只会影响<strong>要不要更新目的操作数的值</strong>。所以该段代码只能用传统的分支代码来实现。</p>
+<h2 id="3-6-7-fucking-循环"><a href="#3-6-7-fucking-循环" class="headerlink" title="3.6.7 fucking 循环"></a>3.6.7 fucking 循环</h2><h3 id="do-while"><a href="#do-while" class="headerlink" title="do while"></a>do while</h3><p>通用形式如下:</p>
+<pre><code class="c">loop:
+    循环体;
+    t = test-expr;
+    if (t)
+        goto loop;
+</code></pre>
+<p>因为无论怎么样都会执行一次，所以在后面判断条件表达式。</p>
+<h3 id="While"><a href="#While" class="headerlink" title="While"></a>While</h3><p>第一种，跳到中间(jump to middle)，顾名思义，就是先跳转到测试条件的地方，实际上就是给<code>do while</code>前面加了一条<code>jmp</code>:</p>
+<pre><code class="c">goto test;
+loop:
+    循环体;
+    test:
+        t=test-expr;
+        if (t)
+            goto loop;
+</code></pre>
+<p>第二种，谨慎地do(guarded-do)，谨慎地<code>do-while</code>，名字还挺幽默，这种就是把先测试条件:</p>
+<pre><code class="c">t = test-expr;
+if (!t)
+    goto DONE;
+loop:
+    循环体;
+    t = test-expr;
+    if (t)
+        goto loop;
+DONE:
+    ...
+</code></pre>
+<p>不过我觉得其实可以这样简化:</p>
+<pre><code class="c">test:
+    t = test-expr;
+    if (!t)
+        goto DONE;
+loop:
+    循环体;
+    goto test;
+DONE:
+    ...
+</code></pre>
+<p>虽然看起来没上面直观...</p>
+<h3 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h3><p>for循环的通用形式为:</p>
+<p><code>for(init-expr;test-expr;update-expr)&#123;...&#125;</code></p>
+<p>翻译成<code>while</code>(跳到中间)就是:</p>
+<pre><code class="c">init-expr;
+goto test;
+loop: 
+    循环体;
+    update-expr;
+test:
+  t = test-expr;
+  if (t)
+    goto loop;
+</code></pre>
+<p>如果<code>for</code>里面包含<code>continue</code>，那么就需要对该结构进行一些改进。</p>
+<p><code>continue</code>是跳过循环体后面所有语句，也就是<code>goto loop</code>(一般来说)，但是这样会导致<code>update-expr</code>不会被执行然后无限循环，改良方法也很简单，把<code>continue</code>翻译成跳转到<code>update-expr</code>那里。</p>
+<h2 id="3-6-8-fucking-switch"><a href="#3-6-8-fucking-switch" class="headerlink" title="3.6.8 fucking switch"></a>3.6.8 fucking switch</h2><p>想象一下，如果使用<code>if</code>来实现<code>switch</code>，是不是需要用很多比较和条件跳转。</p>
+<p>gcc会根据分支数量和分支值的离散程度来决定要不要使用<strong>跳转表</strong>来实现<code>switch</code>，如果分支数量较多且离散程度较低，那么就使用<strong>跳转表</strong>。</p>
+<p>跳转表即存储一系列程序地址的数组(汇编形式上)，我们可以这样来解构<code>switch</code>，假设其分支区间为[a,b]，那么首先<code>%rsi = val-a</code>，得到<code>val</code>相对于区间左值的偏移(可以理解为数组下标，假设将其存储在寄存器<code>%rsi</code>中)，然后使用一个<code>jmp *.addr(,%rsi,8)</code>来跳转到相应分支的起始地址。</p>
+<p>跳转表中的数据是一个个地址(C语言中地址为8字节)，也就是<code>case</code>各个分支的起始地址，从小到大。那么<code>*.addr(,%rsi,8)</code>就相当于取出跳转表中对应<code>case</code>的地址(因为指针大小为8字节，而<code>%rsi</code>存储的是偏移量，所以相当于<code>.addr+8*%rsi</code>，也就是<code>addr[index]</code>)，然后跳转到那里。其中<code>.addr</code>符号是跳转表起始地址，而<code>*</code>这个符号应该是汇编器为了方便理解加的，实际上就是表示取出内存地址<code>.addr(,%rsi,8)</code>中的数据，就像C语言一样(我猜的)。</p>
+<p>所以一般翻译形式为:</p>
+<pre><code class="assembly">subq $区间起始值,%rsi	;获取下标
+cmpq $区间大小,%rsi	
+ja .default	;超过区间范围直接跳到default
+jmp *.jt(,%rsi,8)	;跳转到对应case
+...
+一些case
+...
+.default:
+    ...
+.done:
+    ...
+</code></pre>
+<p><code>case</code>里的<code>break</code>会被翻译成<code>jmp .done</code>，所以如果没有<code>break</code>语句，就会顺延到下一个<code>case</code>直到遇到一个<code>break</code>语句，而形如:</p>
+<pre><code class="c">case 1:
+case 2:
+case 3:
+    ...
+    break;
+</code></pre>
+<p>这样的形式，表示1&#x2F;2&#x2F;3都是同一种情况，所以在跳转表中它们对应的是同一个地址。</p>
+<p><strong>跳转表存储在.rodata段里，这个段是 Read-Only Data，也就是只读的</strong>。</p>
+<h2 id="3-7-1-栈"><a href="#3-7-1-栈" class="headerlink" title="3.7.1 栈"></a>3.7.1 栈</h2><p>每一个子过程对应的栈区间叫做<strong>帧</strong>。</p>
+<p>一个帧的结构为(地址从高到低):</p>
+<blockquote>
+<p><strong>参数</strong>(参数从右往左压入栈中，所以左边的参数的地址最小)。</p>
+<blockquote>
+<p>对于64位系统，有8个寄存器可以用来传递参数，并且顺序固定:</p>
+<p><code>rdi,rsi,rdx,rcx,r8,r9</code>，这6个寄存器只能用来保存整数或指针类型的数据</p>
+<p>如果参数超过6个，超出的部分才用栈保存，不过一般来说用不到这么多..</p>
+<p>如果参数类型是数组或者结构体，也只能在栈上存储。</p>
+</blockquote>
+<p>虽然参数也是一个子过程的一部分，但是实际上参数是由caller调用的，所以不属于callee的栈帧。</p>
+<p>在子过程结束后，<strong>caller</strong>会释放其栈帧中属于<strong>callee的参数</strong>的空间。</p>
+<blockquote>
+<p>通常来说是<code>addq $参数总大小,%rsp</code></p>
+</blockquote>
+</blockquote>
+<ul>
+<li>返回地址(8字节)</li>
+<li><code>rbp</code>寄存器的值(8字节)</li>
+<li>局部变量</li>
+</ul>
+<p>一般来说，在进入一个子过程后首先要做3件事(没有动态大小的变量):</p>
+<ul>
+<li><code>pushq %rbp</code>，保存<code>caller</code>栈基指针</li>
+<li><code>movq %rsp,%rbp</code>，设置该子过程自己的栈基指针，所以在程序运行期间的任何时刻，<code>rbp</code>始终指向<code>caller</code>的<code>rpb</code>。</li>
+<li><code>subq $该过程局部变量所需空间,%rsp</code>，在栈上分配当前子过程所需的空间</li>
+</ul>
+<p>前2步称为保留现场。因为<code>rbp</code>上面除了一个<strong>8字节的返回地址</strong>就是参数，所以一般获取参数都是这样的形式:</p>
+<p><code>movq $xx(%rbp,16,),%xxx</code>，注意一下<code>caller</code>的<code>rbp</code>也是8字节大小，所以偏移一共16字节。</p>
+<p>有了保留现场，在函数返回的时候就有恢复现场，因为参数由<code>caller</code>负责，所以只需要做上面3步的逆操作就好了:</p>
+<ul>
+<li><code>addq $参数大小,%rsp</code>，收回局部变量的空间</li>
+<li><code>movq %rbp,%rsp</code></li>
+<li><code>popq %rbp</code>，弹出<code>caller</code>的<code>rbp</code>并赋值给<code>rbp</code></li>
+<li><code>ret</code>，弹出返回地址并<code>jmp</code></li>
+</ul>
+<p>第二步和第三步可以用<code>leave</code>指令代替，两者是等价的。</p>
+<h2 id="3-8-3-多维数组"><a href="#3-8-3-多维数组" class="headerlink" title="3.8.3 多维数组"></a>3.8.3 多维数组</h2><p>例如有一个二维数组<code>A[M][N]</code>，可以把它看做矩阵，对于长度固定的多维数组，其中的数据元素在内存中是顺序排列的，尽管我们可能觉得一个矩阵，它的第一维度是一个数组指针，而第二维则是数据元素。但很可惜不论是几维数组，类似<code>A[i][j][k]</code>的引用始终指向一个元素，换句话说，我们可以将任意维度的多维数组转换成一个一维数组，定长多维数组的意义只在于可以使用<code>A[i][j]</code>这种形式方便地获取元素，但在底层机器语言层面，最终都会被投射到这组连续地址的某个位置上。</p>
+<p>假设有一个二维数组<code>T A[M][N]</code>，现在要访问元素<code>A[i][j]</code>，设x为数组的起始地址，那么该元素的地址实际上是:</p>
+<p><code>x+sizeof(T)*(i*N+j)</code>.</p>
+<h2 id="3-9-1-结构"><a href="#3-9-1-结构" class="headerlink" title="3.9.1 结构"></a>3.9.1 结构</h2><p>结构的实现类似一个数组，只不过元素的大小不同，换句话说，结构体在内存中的存储是连续的。</p>
+<p>鉴于<code>lea</code>指令的倍率只能是1,2,4,8(我猜的，可能也不是因为这个)，所以结构体内部的元素的地址需要对齐(对2，4，8对齐)。</p>
+<p>简单来讲，结构体内部元素的对齐规则是其偏移必须是这个元素大小的倍数。</p>
+<p>并且，结构体的大小必须是其内部最大的元素的整数倍，不足的话需要填充，之所以只需要是最大元素的整数倍，是因为C语言基本数据类型只有1，2，4，8这4种大小，你可以发现小的元素都是大的元素的公约数，所以如果是最大元素的整数倍，也一定是最小元素的整数倍(反过来就不一定了)。</p>
     </div>
   </div>
 </article> 
